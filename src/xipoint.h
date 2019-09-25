@@ -26,150 +26,149 @@
 namespace xi {
 
 
-/** \brief Declares a two integral coordinate  point object
- *
- *  Since there are reverse links presented, a list can be traversed both
- *  in direct and reverse direction.
- *
- */
-class Point {
-public:
-    /// Constructor initialize a point object with two coordinates  
-    Point(int x = 0, int y = 0);
+	/** \brief Declares a two integral coordinate  point object
+	 *
+	 *  Since there are reverse links presented, a list can be traversed both
+	 *  in direct and reverse direction.
+	 *
+	 */
+	class Point {
+	public:
+		/// Constructor initialize a point object with two coordinates  
+		Point(int x = 0, int y = 0);
 
 
-public:                             // no special need for this line, it used only as 
-    // a separator for improving  reading    
+	public:                             // no special need for this line, it used only as 
+		// a separator for improving  reading    
 
-    /// Shifts coordinates by adding given value shf to both coordinates
-    void shift(int shf);
+		/// Shifts coordinates by adding given value shf to both coordinates
+		void shift(int shf);
 
-    /// Shifts coordinates by adding given values of corresponding coordinates
-    void shift(int xSh, int ySh);
+		/// Shifts coordinates by adding given values of corresponding coordinates
+		void shift(int xSh, int ySh);
 
-    /// Shifts coordinates by adding given values of corresponding coordinates
-    /// of the give point pt
-    void shift(const Point& pt);
+		/// Shifts coordinates by adding given values of corresponding coordinates
+		/// of the give point pt
+		void shift(const Point& pt);
 
-    /// Distance to another point.  Pythagorean theorem.
-    double dist(const Point& other) const;
+		/// Distance to another point.  Pythagorean theorem.
+		double dist(const Point& other) const;
 
-public:
-    //-----<Setters/getters section>-----
+	public:
+		//-----<Setters/getters section>-----
 
-    int getX() const;              ///< Gets x-coordinate
-    int getY() const;              ///< Gets y-coordinate
-    void setX(int x);     ///< Sets x-coordinate
-    void setY(int y);     ///< Sets y-coordinate
+		int getX() const;              ///< Gets x-coordinate
+		int getY() const;              ///< Gets y-coordinate
+		void setX(int x);     ///< Sets x-coordinate
+		void setY(int y);     ///< Sets y-coordinate
 
-protected:
-    int _x, _y;                    ///< Fields for storing coordinates
+	protected:
+		int _x, _y;                    ///< Fields for storing coordinates
 
-}; // class Point
-
-
-/** \brief Class declares a array-style collection of Point objects
- *
- *  Since the class is not generic and explicitly declares using Point objects,
- *  this is the only object types that can be managed by this array
- */
-class PointArray {
-
-public:
-    typedef unsigned int Uint;
-
-public:
-    //-----<Constructors and destructor section>-----
-
-    /** \brief Default constructor (a constructor with no arguments) 
-     *
-     *  It should properly initialize all pointers and is not intended for
-     *  creating any types of "zero-arrays".
-     */
-    PointArray();
-
-    // Point array called points and an int called size 
-    // as its arguments. It should initialize a PointArray with the 
-    // specified size, copying the values from points. You will need 
-    // to dynamically allocate the PointArray’s internal array to the 
-    // specified size. 
-
-    /** \brief Initialiaze an object with c-style array
-     *
-     *  The costructor initialized an object with a given c-style
-     *  array points and its size (n). 
-     *  One need to allocate dynamically the internal array to the size of a given array.
-     *  Note that const Point points[] clause is equal to const Point* points
-     */
-    PointArray(const Point points[], Uint n);
-
-    /// Constructor creates a copy of a given PointArray
-    PointArray(const PointArray& pv);
-
-    /// Destructor that deletes the internal array of the PointArray (frees the allocated memory)
-    ~PointArray();
-
-public:
-
-    /// Adds a Point to the end of the array 
-    void append(const Point& pt);
+	}; // class Point
 
 
-    /** \brief Inserts a Point at a given position of the array, shifting the 
-     *  elements past pos to the right.
-     *
-     *  If pos == 0, inserts a point into the beginning of the array.
-     *  If pos is bigger then the number of elements, put the point to the end.
-     */
-    void insert(const Point& pt, Uint pos);
+	/** \brief Class declares a array-style collection of Point objects
+	 *
+	 *  Since the class is not generic and explicitly declares using Point objects,
+	 *  this is the only object types that can be managed by this array
+	 */
+	class PointArray {
+
+	public:
+		typedef unsigned int Uint;
+
+	public:
+		//-----<Constructors and destructor section>-----
+
+		/** \brief Default constructor (a constructor with no arguments)
+		 *
+		 *  It should properly initialize all pointers and is not intended for
+		 *  creating any types of "zero-arrays".
+		 */
+		PointArray();
+
+		// Point array called points and an int called size 
+		// as its arguments. It should initialize a PointArray with the 
+		// specified size, copying the values from points. You will need 
+		// to dynamically allocate the PointArray’s internal array to the 
+		// specified size. 
+
+		/** \brief Initialiaze an object with c-style array
+		 *
+		 *  The costructor initialized an object with a given c-style
+		 *  array points and its size (n).
+		 *  One need to allocate dynamically the internal array to the size of a given array.
+		 *  Note that const Point points[] clause is equal to const Point* points
+		 */
+		PointArray(const Point points[], Uint n);
+
+		/// Constructor creates a copy of a given PointArray
+		PointArray(const PointArray& pv);
+
+		/// Destructor that deletes the internal array of the PointArray (frees the allocated memory)
+		~PointArray();
+
+	public:
+
+		/// Adds a Point to the end of the array 
+		void append(const Point& pt);
 
 
-    /** \brief Removes a Point at a given position of the array, shifting the 
-     *  remaining elements to the left .
-     *
-     *  If pos is bigger then the number of elements, does nothing.
-     *  If the removed element is the last one, no more underlying array is presented 
-     *  after removing.
-     */
-    void remove(Uint pos);
-
-    /// Removes all elements from the array and sets its size to 0 
-    void clear();
-
-    /// \return The sum of distances between neighbouring points in the array.
-    double computePath() const;
-
-public:
-
-    /// Gets the size of the array 
-    Uint getSize() const;
+		/** \brief Inserts a Point at a given position of the array, shifting the
+		 *  elements past pos to the right.
+		 *
+		 *  If pos == 0, inserts a point into the beginning of the array.
+		 *  If pos is bigger then the number of elements, put the point to the end.
+		 */
+		void insert(const Point& pt, Uint pos);
 
 
-    /** \brief Gets a pointer to the element at a given position of the array
-     *
-     *  If the array contains no given element, returns nullptr
-     */
-    Point* get(Uint pos);
+		/** \brief Removes a Point at a given position of the array, shifting the
+		 *  remaining elements to the left .
+		 *
+		 *  If pos is bigger then the number of elements, does nothing.
+		 *  If the removed element is the last one, no more underlying array is presented
+		 *  after removing.
+		 */
+		void remove(Uint pos);
 
-    /// Const overloaded version of get() method
-    const Point* get(Uint pos) const;
+		/// Removes all elements from the array and sets its size to 0 
+		void clear();
 
-public:
-    /// Returns a raw pointer to the underlying array. Can be user only in RHV position
-    /// The method is implemented as highly-effective inline function
-    const Point* getRawPtr() const { return _arr; }
+		/// \return The sum of distances between neighbouring points in the array.
+		double computePath() const;
 
-protected:
+	public:
 
-    /// Allocates a new array of size n, copies the first min (previous array
-    /// size, n) existing elements into it, and deallocates the old array.
-    void resize(Uint n);
+		/// Gets the size of the array 
+		Uint getSize() const;
 
-    Point* _arr;                ///< Pointer to a c-style  array 
-    Uint _size;                 ///< The actual size of the ^^^
-};
+
+		/** \brief Gets a pointer to the element at a given position of the array
+		 *
+		 *  If the array contains no given element, returns nullptr
+		 */
+		Point* get(Uint pos);
+
+		/// Const overloaded version of get() method
+		const Point* get(Uint pos) const;
+
+	public:
+		/// Returns a raw pointer to the underlying array. Can be user only in RHV position
+		/// The method is implemented as highly-effective inline function
+		const Point* getRawPtr() const { return _arr; }
+
+	protected:
+
+		/// Allocates a new array of size n, copies the first min (previous array
+		/// size, n) existing elements into it, and deallocates the old array.
+		void resize(Uint n);
+
+		Point* _arr;                ///< Pointer to a c-style  array 
+		Uint _size;                 ///< The actual size of the ^^^
+	};
 
 } // namespace xi
 
 #endif    // XI_POINT_H_
-

@@ -21,14 +21,14 @@
 
 int main(int argc, char** argv)
 {
-    using namespace xi;
+	using namespace xi;
 
-    std::cout << "Hello, world!";
+	std::cout << "Hello, world!";
 
-    Point p;
-    Point p1(1, 1);
-    PointArray ar1;
+	Point p;
+	Point p1(1, 1);
+	PointArray ar1;
 
-    //std::getchar();
+	//std::getchar();
 
 }
